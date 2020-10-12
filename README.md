@@ -71,4 +71,8 @@ make enter
 ```
 This will attach the current terminal to the container.
 
+## Make it usefull from anywhere
+``` bash
+alias rovi='make -f /home/me/Git/Robotics_and_Vision_Virtual_machine/Makefile'
+```
 

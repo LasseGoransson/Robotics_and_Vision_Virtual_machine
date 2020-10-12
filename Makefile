@@ -1,5 +1,5 @@
-image = robvis
-container_id_file = ./container_id
+image = rovi
+container_id_file = /tmp/rovi_container_id
 
 build:
 	sudo docker build -t $(image) .
@@ -13,7 +13,7 @@ create:
 		--cidfile $(container_id_file) \
 		--device /dev/dri:/dev/dri \
 		-e DISPLAY \
-		-v $(shell pwd)/execise:/home/user/execise \
+		-v $(shell pwd):/workdir \
 		-e QT_X11_NO_MITSHM=1 \
 		-v /tmp/.X11-unix:/tmp/.X11-unix \
 		-v ~/.Xauthority:/root/.Xauthority \
