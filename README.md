@@ -23,10 +23,6 @@ If there is any issues with the container, which are related to the docker image
 Docker is a program that handler containers. Virtual machine and Containers works allmost the same, but a container is running directly on the host system kernel insteed of a virtualization of the hardware. Therefore is containers faster but they doesn't have access to all resources as a virtual machine but the resources can be shared with the container when need. This description is just a quick overview a more indepth can be found by google or on this [page](https://www.electronicdesign.com/technologies/dev-tools/article/21801722/whats-the-difference-between-containers-and-virtual-machines).  
 
 Docker works on windows, mac and linux. But beware that if you are running this image in docker on windows, will docker create a virtual machine in the background. If you are running docker on ubuntu then you run the command `sudo apt install docker*`. 
-
-## Why use a container ? 
-The nice thing about a container is that, it is isolered from the host machine. In this case that is nice because it is easy to move the container to any other machine with docker. You can easily cleanup the dependence for library just by removing the container. Futhermore it is scalable. which means that you can have multiple container running the same image side by side and there but run simulation in parallel insteed. 
-
 ## Make file
 In order to simplify the commands need are the provided a make file that
 handles allmust every thing. 
@@ -44,7 +40,7 @@ make buildrm
 This command will remove the build images.
 
 ``` bash
-make create
+make innit
 ```
 
 This will create the container, which access to the X11 server. This will
@@ -75,4 +71,23 @@ This will attach the current terminal to the container.
 ``` bash
 alias rovi='make -f /home/me/Git/Robotics_and_Vision_Virtual_machine/Makefile'
 ```
+
+## Clangd support
+	
+To have clangd support for the host editor make the rovi-clangd script executable,
+owned by the docker group and set the setgid bit.
+``` bash
+sudo chown $USER:docker rovi-clangd
+sudo chmod a+x,s+g rovi-clangd
+```
+
+### YouCompleteMe in vim
+When starting vim do
+``` vimscript
+:let g:ycm_clangd_binary_path='<absolute path to this dir>/rovi-clangd'
+:YcmRestartServer
+```
+
+
+
 
