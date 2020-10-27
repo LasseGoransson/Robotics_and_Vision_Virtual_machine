@@ -1,0 +1,5 @@
+#!/usr/bin/bash
+container_id_file=/tmp/rovi/rovi_container_id
+docker exec -i $(cat ${container_id_file} ) clangd-10 "${@}"
+exit $?
+

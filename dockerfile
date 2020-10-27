@@ -53,6 +53,7 @@ RUN apt update && apt install -y vim \
                                  openssh* \
                                  sudo \
                                  gdb \
+                                 clangd-10 \
                && rm -rf /var/lib/apt/lists/*
 
 
